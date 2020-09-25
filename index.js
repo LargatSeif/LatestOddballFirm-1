@@ -1,7 +1,11 @@
 
 const xl = require('excel4node');
+const fs = require('fs');
 const csvFilePath = './data1.csv'
 const csv = require('csvtojson');
+
+
+console.log()
 const headers_E = [
 		'STATUT',
 		'FOURNISSEUR',
@@ -16,6 +20,20 @@ const headers_E = [
 		'ENTITE',
 		'AFFAIRE',
 		'RA']
+function transformToXls(content){
+	return new Promise ((resolve,reject) => {
+		content = content.replace(/Bloqu√©e/g,'Bloquée');
+		content = content.replace(/;/g,'\t');
+		resolve(content);
+	});
+}
+
+let data = fs.readFileSync(csvFilePath,{encoding:'utf8'});
+transformToXls(data).then((data)=>{
+
+fs.writeFileSync('abc.xls',data)
+})
+		/*
 csv({
 	delimiter:';',
 	headers:headers_E
@@ -38,7 +56,7 @@ csv({
 			let columnIndex = 1;
 			Object.keys(record ).forEach(columnName =>{
 				if(columnName == 'HT'){
-					ws.cell(rowIndex,columnIndex++)
+					ws.cell(rowIndex,columnIndex++).
 					.string(String(record[columnName]));
 				}else{
 					ws.cell(rowIndex,columnIndex++)
@@ -50,3 +68,4 @@ csv({
     	});
 		wb.write('xxx.xlsx');
 	});
+	*/
