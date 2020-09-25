@@ -25,7 +25,7 @@ csv({
 
 		// console.log(jsonObj);
 		const wb = new xl.Workbook();
-    	const ws = wb.addWorksheet('devENGIE');
+    	const ws = wb.addWorksheet('dev_ENGIE');
 		const headingColumnNames = headers_E;
 
 		let rowIndex = 2;
@@ -37,14 +37,16 @@ csv({
 		jsonObj.forEach( record => {
 			let columnIndex = 1;
 			Object.keys(record ).forEach(columnName =>{
-				if(columnName in ['HT','TTC'] ){
+				if(columnName == 'HT'){
 					ws.cell(rowIndex,columnIndex++)
-					.number(record [columnName])
+					.string(String(record[columnName]));
+				}else{
+					ws.cell(rowIndex,columnIndex++)
+					.string(record[columnName]);
 				}
-				ws.cell(rowIndex,columnIndex++)
-					.string(record [columnName])
+				
 			});
 			rowIndex++;
     	});
-		wb.write('xyz.xlsx');
+		wb.write('xxx.xlsx');
 	});
