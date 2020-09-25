@@ -1,13 +1,14 @@
 const convCsvToXlsx = require('@aternus/csv-to-xlsx');
 const fs = require('fs');
 
+const path = require('path');
+const convertCsvToXlsx = require('@aternus/csv-to-xlsx');
 
-fs.readFile('data.csv', 'utf8', function(err, data) {
-	console.log(data)
-	try {
-		convCsvToXlsx('./data.csv', './data.xlsx');
-	} catch (e) {
-		console.error(e.toString());
-	}
-	// console.log(dataArray);
-});
+let source = path.join(__dirname, 'data.csv');
+let destination = path.join(__dirname, 'converted_report.xlsx');
+
+try {
+  convertCsvToXlsx(source, destination);
+} catch (e) {
+  console.error(e.toString());
+}
