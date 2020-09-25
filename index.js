@@ -37,10 +37,14 @@ csv({
 		jsonObj.forEach( record => {
 			let columnIndex = 1;
 			Object.keys(record ).forEach(columnName =>{
+				if(columnName in ['HT','TTC'] ){
+					ws.cell(rowIndex,columnIndex++)
+					.number(record [columnName])
+				}
 				ws.cell(rowIndex,columnIndex++)
 					.string(record [columnName])
 			});
 			rowIndex++;
     	});
-		wb.write('xxx.xlsx');
+		wb.write('xyz.xlsx');
 	});
