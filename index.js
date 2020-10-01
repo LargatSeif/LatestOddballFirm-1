@@ -36,11 +36,11 @@ if(decodedFile.indexOf('é') < 0) {
 
 */
 var blob = new Blob(["\ufeff"+data_brut], {
-    type: 'text/csv; charset=utf-8'
+    type: 'text/csv; charset=utf-16'
 });
 transformToXls("\uFEFF"+data_brut).then((data)=>{
 	
-	fs.writeFileSync('le_bon_encodage.xls',data,'utf8');
+	fs.writeFileSync('le_bon_encodage.xls',data);
 	console.log(data)
 })
  
