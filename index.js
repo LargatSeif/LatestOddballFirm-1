@@ -17,7 +17,7 @@ En cours de traitement;ACCES INDUSTRIE;F19N2049;5120102747;411,9;494,28;EUR;29-1
 
 function transformToXls(content){
 	return new Promise ((resolve,reject) => {
-		//content = content.replace(/;/g,'\t');
+		content = content.replace(/;/g,'\t');
 		// console.log(content)
 		resolve(content);
 	});
@@ -38,7 +38,7 @@ if(decodedFile.indexOf('é') < 0) {
 var blob = new Blob(["\ufeff"+data_brut], {
     type: 'text/csv; charset=utf-8'
 });
-transformToXls("\ufeff"+data_brut).then((data)=>{
+transformToXls("\uFEFF"+data_brut).then((data)=>{
 	
 	fs.writeFileSync('le_bon_encodage.xls',data,'utf8');
 	console.log(data)
