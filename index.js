@@ -40,7 +40,7 @@ var blob = new Blob(["\ufeff"+data_brut], {
 });
 transformToXls("\uFEFF"+data_brut).then((data)=>{
 	
-	fs.writeFileSync('le_bon_encodage.xls',data);
+	fs.writeFileSync('le_bon_encodageeee.xls',data);
 	console.log(data)
 })
  
